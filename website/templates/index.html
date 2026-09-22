@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}MrPsyghost | Home{% endblock %}
+
+{% block content %}
+<div class="name">
+    MrPsyghost
+    <div id="age"></div>
+</div>
+<hr>
+<div class="personal-projects">
+    <div class="projects-title">
+        <h1>My Projects</h1>
+        <h2>(6)</h2>
+    </div>
+    <div class="project" onclick="">
+        <div class="p-name">Black Hole Simulation</div>
+        <div class="p-desc">A whole simulation of a black hole with 2 planets revolving around it.</div>
+        <img class="p-img" src="{{ url_for('static', filename='projects/1.png') }}">
+    </div>
+    <div class="project" onclick="">
+        <div class="p-name">Black Hole Simulation</div>
+        <div class="p-desc">A whole simulation of a black hole with 2 planets revolving around it.</div>
+        <img class="p-img" src="{{ url_for('static', filename='projects/1.png') }}">
+    </div>
+    <div class="project" onclick="">
+        <div class="p-name">Black Hole Simulation</div>
+        <div class="p-desc">A whole simulation of a black hole with 2 planets revolving around it.</div>
+        <img class="p-img" src="{{ url_for('static', filename='projects/1.png') }}">
+    </div>
+    <div class="project" onclick="">
+        <div class="p-name">Black Hole Simulation</div>
+        <div class="p-desc">A whole simulation of a black hole with 2 planets revolving around it.</div>
+        <img class="p-img" src="{{ url_for('static', filename='projects/1.png') }}">
+    </div>
+    <div class="project" onclick="">
+        <div class="p-name">Black Hole Simulation</div>
+        <div class="p-desc">A whole simulation of a black hole with 2 planets revolving around it.</div>
+        <img class="p-img" src="{{ url_for('static', filename='projects/1.png') }}">
+    </div>
+</div>
+<hr>
+<div class="end">
+    <div class="text">
+        <i data-lucide="chevron-right"></i> Built with Curiosity. <div class="cursor"></div>
+    </div>
+    <div class="links">
+        <a target="_blank" href="https://github.com/MrPsyghost" title="My Github Profile">github</a>
+        <a target="_blank" href="https://www.youtube.com/@MrPsyghost" title="My YouTube Channel">youtube</a>
+        <a target="" href="" title="Contact Form coming soon...">email</a>
+        <a target="" href="" title="Discord Channel coming soon...">discord</a>
+        <a target="_blank" href="https://www.linkedin.com/in/shivay-puri-09358b2b4" title="My LinkedIn Profile">linkedin</a>
+    </div>
+</div>
+{% endblock %}
