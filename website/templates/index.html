@@ -17,7 +17,7 @@
         <div class="p-name">{{ repo.name }}</div>
         <div class="p-desc">{{ repo.description or 'No description.' }}</div>
         <div class="p-img">
-            <img src="{{ repo.cover_img or url_for('static', filename='projects/1.png') }}">
+            <img src="{{ repo.cover_img }}">
         </div>
     </div>
     {% endfor %}
