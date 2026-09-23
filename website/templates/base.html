@@ -12,6 +12,10 @@
 
 <body>
     <div class="content">{% block content %}{% endblock %}</div>
+    <div id="unavailable">
+        <h1><i data-lucide="triangle-alert"></i>Under Development<i data-lucide="triangle-alert"></i></h1>
+        <h2>This website isn't available for mobile devices, i.e., Android and iOS.</h2>
+    </div>
     <script src="{{ url_for('static', filename='main.js') }}"></script>
 </body>
 
