@@ -5,7 +5,7 @@ if (/android/i.test(ua) || /iPhone|iPad|iPod/i.test(ua)) {
     unavailable.style.display = 'flex';
 }
 
-const updateAgeText = false;
+const updateAgeText = true;
 
 function getAge() {
     return (Date.now() - new Date("2010-02-01T00:00:00Z").getTime()) / 31557600000;
