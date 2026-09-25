@@ -21,6 +21,7 @@ def get_repos(user_name: str) -> list[dict[str, Any]]:
 
     return [
         {
+            'user_name': user_name,
             'name': repo['name'],
             'description': repo['description'],
             'url': repo['html_url'],
@@ -28,6 +29,7 @@ def get_repos(user_name: str) -> list[dict[str, Any]]:
             'stars': repo['stargazers_count'],
             'updated': repo['updated_at'],
             'cover_img': f"https://raw.githubusercontent.com/{user_name}/{repo['name']}/main/portfolio/cover.png",
+            'thumbnails': len(requests.get(f"https://api.github.com/repos/{user_name}/{repo['name']}/contents/portfolio/thumbnails", headers=headers).json()),
         }
         for repo in repos
         if "portfolio" in repo['topics']

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}MrPsyghost | {{ repo.name }}{% endblock %}
+{% set stylesheet = 'project.css' %}
+{% block content %}
+<div id="img"><img src="{{ repo.cover_img }}"></div>
+<div class="p-imgs">
+    <i data-lucide="chevron-left" onclick="leftImg()"></i>
+    <div class="p-img-scroll">
+        {% for i in range(1, repo.thumbnails + 1) %}
+            {% if i == 1 %}
+                <div class="p-img" id="selected" onclick="selectImg(this)"><img src="https://raw.githubusercontent.com/{{ repo.user_name }}/{{ repo.name }}/main/portfolio/thumbnails/{{ i }}.png"></div>
+            {% else %}
+                <div class="p-img" onclick="selectImg(this)"><img src="https://raw.githubusercontent.com/{{ repo.user_name }}/{{ repo.name }}/main/portfolio/thumbnails/{{ i }}.png"></div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <i data-lucide="chevron-right" onclick="rightImg()"></i>
+</div>
+<hr>
+<div class="name">{{ repo.name }}</div>
+<div class="updated">Last updated on: {{ repo.updated[:10].replace('-', ' / ') }}</div>
+<div class="desc">{{ repo.description }}</div>
+<hr>
+<div class="end">
+    <div class="text">
+        <i data-lucide="chevron-right"></i> Built with Curiosity. <div class="cursor"></div>
+    </div>
+    <div class="links">
+        <a target="_blank" href="https://github.com/MrPsyghost" title="My Github Profile">github</a>
+        <a target="_blank" href="https://www.youtube.com/@MrPsyghost" title="My YouTube Channel">youtube</a>
+        <a target="" title="Contact Form coming soon...">email</a>
+        <a target="" title="Discord Channel coming soon...">discord</a>
+        <a target="_blank" href="https://www.linkedin.com/in/shivay-puri-09358b2b4" title="My LinkedIn Profile">linkedin</a>
+    </div>
+</div>
+<script src="{{ url_for('static', filename='project.js') }}"></script>
+{% endblock %}
