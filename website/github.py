@@ -1,7 +1,11 @@
-import requests, os
+import requests, os, time
 from typing import Any
+from datetime import timedelta
 
-def get_repos(user_name: str) -> list[dict[str, Any]]:
+t = time.monotonic()
+data = None
+
+def get_repos(user_name: str, thumbnails: bool) -> list[dict[str, Any]]:
     url = f'https://api.github.com/users/{user_name}/repos'
 
     headers = {
@@ -29,8 +33,19 @@ def get_repos(user_name: str) -> list[dict[str, Any]]:
             'stars': repo['stargazers_count'],
             'updated': repo['updated_at'],
             'cover_img': f"https://raw.githubusercontent.com/{user_name}/{repo['name']}/main/portfolio/cover.png",
-            'thumbnails': len(requests.get(f"https://api.github.com/repos/{user_name}/{repo['name']}/contents/portfolio/thumbnails", headers=headers).json()),
+            'thumbnails': len(requests.get(f"https://api.github.com/repos/{user_name}/{repo['name']}/contents/portfolio/thumbnails", headers=headers).json()) if thumbnails else 0,
         }
         for repo in repos
         if "portfolio" in repo['topics']
     ]
+
+def get_repos_with_cache(user_name: str, thumbnails: bool=False, caching: bool=False, cachingTime: int=60) -> list[dict[str, Any]]:
+    global data, t
+    if not caching:
+        return get_repos(user_name, thumbnails)
+    else:
+        if data is None or time.monotonic() - t > timedelta(seconds=cachingTime):
+            data = get_repos(user_name, thumbnails)
+            t = time.monotonic()
+            print('cache reset')
+        return data
