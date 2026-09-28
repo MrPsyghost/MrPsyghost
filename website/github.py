@@ -1,6 +1,5 @@
 import requests, os, time
 from typing import Any
-from datetime import timedelta
 
 t = time.monotonic()
 data = None
@@ -44,7 +43,7 @@ def get_repos_with_cache(user_name: str, thumbnails: bool=False, caching: bool=F
     if not caching:
         return get_repos(user_name, thumbnails)
     else:
-        if data is None or time.monotonic() - t > timedelta(seconds=cachingTime):
+        if data is None or time.monotonic() - t > cachingTime:
             data = get_repos(user_name, thumbnails)
             t = time.monotonic()
             print('cache reset')
