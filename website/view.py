@@ -2,6 +2,10 @@ from flask import Blueprint, render_template, abort#, redirect, request, flash, 
 from .db import *
 from .github import get_repos, get_repos_with_cache
 from pathlib import Path
+from markdown_it import MarkdownIt
+import base64
+
+md = MarkdownIt("gfm-like")
 
 view = Blueprint('view', __name__)
 
@@ -30,12 +34,16 @@ CACHING_TIME = int(cfg.get('cachingTime', '60'))
 
 @view.route('/')
 def home():
-    repos = get_repos_with_cache(GITHUB_USER, False, CACHING)
+    repos = get_repos_with_cache(GITHUB_USER, CACHING, CACHING_TIME)
     return render_template('index.html', repos=repos)
 
 @view.route('/projects/<repo_name>')
 def project(repo_name):
-    for repo in get_repos_with_cache(GITHUB_USER, True, CACHING, CACHING_TIME):
+    for repo in get_repos_with_cache(GITHUB_USER, CACHING, CACHING_TIME):
         if repo['name'] == repo_name:
-            return render_template('project.html', repo=repo, url=f'https://raw.githubusercontent.com/{GITHUB_USER}/{repo_name}/main/portfolio/thumbnails')
+            try:
+                readme = md.render(base64.b64decode(repo['readme']['content']).decode('utf-8'))
+            except (KeyError, TypeError, ValueError):
+                readme = None
+            return render_template('project.html', repo=repo, readme=readme, url=f'https://raw.githubusercontent.com/{GITHUB_USER}/{repo_name}/main/portfolio/thumbnails')
     abort(404)

@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 {% block title %}MrPsyghost | {{ repo.name }}{% endblock %}
 {% set stylesheet = 'project.css' %}
+{% block back %}
+    <div class="back" onclick="window.location.href = '/'">
+        <i data-lucide="move-left"></i>
+    </div>
+{% endblock %}
 {% block content %}
 <div id="img"><img src="{{ repo.cover_img }}"></div>
 <div class="p-imgs">
@@ -20,6 +25,11 @@
 <div class="name">{{ repo.name }}</div>
 <div class="updated">Last updated on: {{ repo.updated[:10].replace('-', ' / ') }}</div>
 <div class="desc">{{ repo.description }}</div>
+{% if readme is not none %}
+<div class="readme">
+    {{ readme|safe }}
+</div>
+{% endif %}
 <hr>
 <div class="end">
     <div class="text">

@@ -184,6 +184,48 @@ body {
     margin-bottom: 5%;
 }
 
+.back {
+    position: fixed;
+    top: 4%;
+    left: 2%;
+    margin: 0;
+}
+
+.back svg {
+    margin: 0;
+}
+
+.back:hover {
+    cursor: pointer;
+}
+
+.readme {
+    position: relative;
+    background: #313131;
+    padding: 2vw;
+    border: 0.1vw solid #1a1b1b;
+    border-radius: 1vw;
+    margin-bottom: 5%;
+}
+
+.readme pre {
+    background: #0d1117;
+    padding: 16px;
+    border-radius: 6px;
+    overflow-x: auto;
+    line-height: 1.45;
+}
+
+.readme code {
+    font-family: monospace;
+}
+
+.readme :not(pre) > code {
+    background: rgba(110, 118, 129, 0.4);
+    padding: 0.2em 0.4em;
+    border-radius: 6px;
+}
+
 .end {
     margin-top: 5%;
     margin-bottom: 5%;

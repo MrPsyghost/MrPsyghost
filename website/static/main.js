@@ -1,4 +1,5 @@
 const developing = false;
+const decimalPlaces = 15;
 
 function getAge() {
     return (Date.now() - new Date("2010-02-01T00:00:00Z").getTime()) / 31557600000;
@@ -7,7 +8,7 @@ function getAge() {
 function updateAge(age) {
     const ageElement = document.getElementById("age");
     if (!ageElement) return;
-    ageElement.textContent = 'I am ' + (age.toFixed(20)).toString() + ' years old';
+    ageElement.textContent = 'I am ' + (age.toFixed(decimalPlaces)).toString() + ' years old';
 }
 
 function openProject(p) {
